@@ -6,12 +6,13 @@ tasks = []  # La lista donde se almacenaran las tareas
 RED_COLOR = "\033[1;31;40m"
 RESET_COLOR = "\033[0m"
 BLUE_COLOR = "\033[1;34m"
+YELLOW_COLOR = "\033[33m"
 
 
 def search_task(name):
     for counter in tasks:
         if tasks[counter] == name:
-            print("La tarea ya existe!")
+            print(f"{YELLOW_COLOR }La tarea ya existe!{RESET_COLOR}")
         else:
             counter += 1
     pass
