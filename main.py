@@ -2,32 +2,46 @@
 
 # Variables globales
 execute: bool = True
-tasks = []  # La lista donde se almacenaran las tareas
+tasks = []
+
+""" 
+Estructura esperada de tasks: 
+
+tasks = [(tarea1), (estado) # Indice 0 y 1, (tarea2), (estado) # Indice 2 y 3]
+"""
 RED_COLOR = "\033[1;31;40m"
 RESET_COLOR = "\033[0m"
 BLUE_COLOR = "\033[1;34m"
 YELLOW_COLOR = "\033[33m"
 
 
-def search_task(name):
-    for counter in tasks:
-        if tasks[counter] == name:
-            print(f"{YELLOW_COLOR }La tarea ya existe!{RESET_COLOR}")
-        else:
-            counter += 1
+def search_task(name: str) -> bool:
+    """
+    Busca si una tarea con el 'name' dado ya existe en la lista 'tasks'.
+    Asume que tasks es una lista de elementos (tuplas/listas), donde el nombre es el índice 0.
+    """
+    for task_item in tasks:
+        # task_item es la tarea completa (e.g., ('Comprar leche', 'Pendiente'))
+        task_name = task_item[0]
+
+        if task_name.lower() == name.lower():
+            print(
+                f"{YELLOW_COLOR}La tarea ya existe! Por favor, introduce otro nombre.{RESET_COLOR}\n"
+            )
+            return True  # Tarea existe
+
+    return False  # Tarea no existe
+
+
+def add_task(name: str, status: str):
     pass
 
 
-def add_task(name, status):
-
+def remove_task(name: str):
     pass
 
 
-def remove_task(name):
-    pass
-
-
-def change_task_status(name, new_status):
+def change_task_status(name: str, new_status: str):
     pass
 
 
@@ -43,11 +57,13 @@ while execute:
         selection: int = int(input("Numero de la acción a realizar: "))
         match selection:
             case 1:
-                task_to_add = input("[+] Introduce la tarea: ")
-                status_of_task = input(
-                    "[+] Introduce el estado de la tarea (Completada o Pendiente): "
-                )
-                add_task(task_to_add, status_of_task)
+                try:
+                    task_to_add: str = input("[+] Introduce la tarea: ")
+                    status_of_task: str = input(
+                        "[+] Introduce el estado de la tarea (Completada o Pendiente): "
+                    )
+                except ValueError:
+                    print("El valor introducido no es del")
             case 2:
                 pass
             case 3:
