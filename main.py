@@ -8,7 +8,17 @@ COLOR_RESET = "\033[0m"
 COLOR_AZUL = "\033[1;34m"
 
 
+def search_task(name):
+    for counter in tasks:
+        if tasks[counter] == name:
+            print("La tarea ya existe!")
+        else:
+            counter += 1
+    pass
+
+
 def add_task(name, status):
+
     pass
 
 
