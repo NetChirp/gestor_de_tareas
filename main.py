@@ -1,4 +1,5 @@
 # Programa monolitico para la gestión de tareas
+import os
 
 # Variables globales
 execute: bool = True
@@ -58,6 +59,9 @@ while execute:
         match selection:
             case 1:
                 try:
+                    os.system(
+                        "clear"
+                    )  # Targeted towards Linux / Powershell / MacOs. Won't work on cmd. Don't care
                     task_to_add: str = input("[+] Introduce la tarea: ")
                     status_of_task: str = input(
                         "[+] Introduce el estado de la tarea (Completada o Pendiente): "
@@ -65,6 +69,7 @@ while execute:
                 except ValueError:
                     print("El valor introducido no es del")
             case 2:
+                os.system("clear")
                 pass
             case 3:
                 execute = False
