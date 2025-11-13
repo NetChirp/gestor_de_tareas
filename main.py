@@ -21,8 +21,8 @@ def search_task(name: str) -> bool:
     Asume que tasks es una lista de elementos (tuplas/listas), donde el nombre es el índice 0.
     """
     for task_item in tasks:
-        # task_item is the full task (e.g., ('Comprar leche', 'Pendiente'))
-        task_name = task_item[0]  # Get the name only
+        # task_item es la tarea completa (e.g., ('Comprar leche', 'Pendiente'))
+        task_name = task_item[0]
 
         if task_name.lower() == name.lower():
             print(
