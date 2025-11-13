@@ -8,7 +8,17 @@ COLOR_RESET = "\033[0m"
 COLOR_AZUL = "\033[1;34m"
 
 
+def search_task(name):
+    for counter in tasks:
+        if tasks[counter] == name:
+            print("La tarea ya existe!")
+        else:
+            counter += 1
+    pass
+
+
 def add_task(name, status):
+
     pass
 
 
@@ -37,7 +47,13 @@ while execute:
                     "[+] Introduce el estado de la tarea (Completada o Pendiente): "
                 )
                 add_task(task_to_add, status_of_task)
-
+            case 2:
+                pass
+            case 3:
+                execute = False
+                break
+            case _:  # Caso que se ejecutara si ninguno de los anteriores es valido
+                print(f"{COLOR_ROJO}Caso no esperado!{COLOR_RESET}")
     except ValueError:  # Si no es un entero
         print(
             f"{COLOR_ROJO}El valor introducido no es un numero. Introduce un numero del menu de opciones{COLOR_RESET}\n"
