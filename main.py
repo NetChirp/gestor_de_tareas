@@ -3,9 +3,9 @@
 # Variables globales
 execute: bool = True
 tasks = []  # La lista donde se almacenaran las tareas
-COLOR_ROJO = "\033[1;31;40m"
-COLOR_RESET = "\033[0m"
-COLOR_AZUL = "\033[1;34m"
+RED_COLOR = "\033[1;31;40m"
+RESET_COLOR = "\033[0m"
+BLUE_COLOR = "\033[1;34m"
 
 
 def search_task(name):
@@ -32,10 +32,10 @@ def change_task_status(name, new_status):
 
 while execute:
     print("----------------------")
-    print(f"{COLOR_AZUL}OPCIONES{COLOR_RESET}")
-    print(f"{COLOR_AZUL}[1]{COLOR_RESET} Añadir una nueva tarea")
-    print(f"{COLOR_AZUL}[2]{COLOR_RESET} Consultar o gestionar tareas")
-    print(f"{COLOR_AZUL}[3]{COLOR_RESET} Salir del programa")
+    print(f"{BLUE_COLOR}OPCIONES{RESET_COLOR}")
+    print(f"{BLUE_COLOR}[1]{RESET_COLOR} Añadir una nueva tarea")
+    print(f"{BLUE_COLOR}[2]{RESET_COLOR} Consultar o gestionar tareas")
+    print(f"{BLUE_COLOR}[3]{RESET_COLOR} Salir del programa")
     print("----------------------")
 
     try:
@@ -53,8 +53,8 @@ while execute:
                 execute = False
                 break
             case _:  # Caso que se ejecutara si ninguno de los anteriores es valido
-                print(f"{COLOR_ROJO}Caso no esperado!{COLOR_RESET}")
+                print(f"{RED_COLOR}Caso no esperado!{RESET_COLOR}")
     except ValueError:  # Si no es un entero
         print(
-            f"{COLOR_ROJO}El valor introducido no es un numero. Introduce un numero del menu de opciones{COLOR_RESET}\n"
+            f"{RED_COLOR}El valor introducido no es un numero. Introduce un numero del menu de opciones{RESET_COLOR}\n"
         )
