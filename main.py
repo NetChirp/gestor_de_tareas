@@ -62,9 +62,9 @@ while execute:
                     os.system(
                         "clear"
                     )  # Targeted towards Linux / Powershell / MacOs. Won't work on cmd. Don't care
-                    task_to_add: str = input("[+] Introduce la tarea: ")
+                    task_to_add: str = input("Introduce la tarea: ")
                     status_of_task: str = input(
-                        "[+] Introduce el estado de la tarea (Completada o Pendiente): "
+                        "Introduce el estado de la tarea (Completada o Pendiente): "
                     )
                 except ValueError:
                     print("El valor introducido no es del")
