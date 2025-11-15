@@ -1,6 +1,5 @@
 # Programa monolitico para la gestión de tareas
 """
-TODO: Refactor add_task function to use the strip and split methods to add the task.
 TODO: Refactor search_task function to search through a parameter, sorting the zip() variable results
 """
 import os
@@ -38,7 +37,6 @@ def search_task(name: str) -> bool:
 
 
 def add_task():
-    # TODO: Test this refactorization of the code. Still needs polishing
     user_task: str = input(
         f"{YELLOW_COLOR}Introduce la tarea y su estado, separado por una coma{RESET_COLOR}\nAñadir: "
     )
