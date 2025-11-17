@@ -62,12 +62,28 @@ def add_task():
 
 # Task will be always the index of the task. It will kill both task and status as per our structure
 def remove_task():
-    show_tasks: str = input("Sabes el indice de la tarea? S/n\nRespuesta:")
+    show_tasks: str = input("¿Sabes el índice de la tarea? S/n\nRespuesta: ")
     if show_tasks.lower() != "s":
         display_tasks()
-    task = int(input("Introduce el indice de la tarea a eliminar"))
 
-    tasks.remove(task)
+    try:
+        index = int(input("Introduce el índice de la tarea a eliminar: "))
+
+        # Ajustamos porque el usuario ve las tareas empezando desde 1
+        real_index = index - 1
+
+        # Comprobación básica para evitar errores
+        if real_index < 0 or real_index >= len(tasks):
+            print(f"{RED_COLOR}El índice no existe en la lista de tareas.{RESET_COLOR}")
+            return
+
+        # Eliminamos por índice, no por valor
+        tasks.pop(real_index)
+        print(f"{YELLOW_COLOR}Tarea eliminada correctamente.{RESET_COLOR}\n")
+        os.system("clear")
+
+    except ValueError:
+        print(f"{RED_COLOR}Debes introducir un número válido.{RESET_COLOR}")
 
 
 """
@@ -78,19 +94,28 @@ removing it and adding it back. I must finish this program ASAP to continue doin
 
 def change_task():
     try:
-        task = int(
+        index = int(
             input(
-                f"{YELLOW_COLOR}[+] En la parte superior tienes el numero de cada tarea{RESET_COLOR}\nIntroduce numero de tarea a cambiar: "
+                f"{YELLOW_COLOR}[+] En la parte superior tienes el número de cada tarea{RESET_COLOR}\n"
+                "Introduce número de tarea a cambiar: "
             )
         )
 
-        tasks.remove(
-            task
-        )  # I know I should use the remove_task implementation, but I just want to finish this and make it work
+        real_index = index - 1
+
+        if real_index < 0 or real_index >= len(tasks):
+            print(f"{RED_COLOR}El índice no existe en la lista de tareas.{RESET_COLOR}")
+            return
+
+        # Eliminamos la tarea existente
+        tasks.pop(real_index)
+
+        # Añadir nueva tarea usando tu función ya existente
         add_task()
+
     except ValueError:
         print(
-            f"{RED_COLOR} Introduce un indice como 1,2... No otro tipo de valor{RESET_COLOR}"
+            f"{RED_COLOR}Introduce un índice como 1, 2, 3... No otro tipo de valor.{RESET_COLOR}"
         )
 
 
@@ -133,11 +158,8 @@ while execute:
                             change_task()
                         case 2:
                             remove_task()
-                            break
                         case 3:
-                            # TODO: Implement this code to remove by index, not by name.
-                            task: str = input("Introduce la tarea a eliminar")
-                            # remove_task(task)
+                            continue
                 except ValueError:
                     print(
                         f"{RED_COLOR} Debes introducir 1, 2 o 3 como acción!{RESET_COLOR}"
