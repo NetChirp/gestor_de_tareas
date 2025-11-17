@@ -1,7 +1,5 @@
 # Programa monolitico para la gestión de tareas
-"""
-TODO: Refactor search_task function to search through a parameter, sorting the zip() variable results
-"""
+
 import os
 
 # Variables globales
@@ -62,19 +60,38 @@ def add_task():
         os.system("clear")
 
 
-def remove_task(task):
-    pass
+# Task will be always the index of the task. It will kill both task and status as per our structure
+def remove_task():
+    show_tasks: str = input("Sabes el indice de la tarea? S/n\nRespuesta:")
+    if show_tasks.lower() != "s":
+        display_tasks()
+    task = int(input("Introduce el indice de la tarea a eliminar"))
+
+    tasks.remove(task)
+
+
+"""
+I became way too lazy to implement this in the 'correct way'. At the end of the day, replacing a task can be just
+removing it and adding it back. I must finish this program ASAP to continue doing DDBB
+"""
 
 
 def change_task():
-    task = int(
-        input(
-            f"{YELLOW_COLOR}[+] En la parte superior tienes el numero de cada tarea{RESET_COLOR}\nIntroduce numero de tarea a cambiar: "
+    try:
+        task = int(
+            input(
+                f"{YELLOW_COLOR}[+] En la parte superior tienes el numero de cada tarea{RESET_COLOR}\nIntroduce numero de tarea a cambiar: "
+            )
         )
-    )
 
-    remove_task(task)
-    add_task()
+        tasks.remove(
+            task
+        )  # I know I should use the remove_task implementation, but I just want to finish this and make it work
+        add_task()
+    except ValueError:
+        print(
+            f"{RED_COLOR} Introduce un indice como 1,2... No otro tipo de valor{RESET_COLOR}"
+        )
 
 
 while execute:
@@ -91,7 +108,7 @@ while execute:
         match selection:
             case 1:
                 try:
-                    os.system("clear")  #! No funcionara en el antiguo CMD de Windows
+                    os.system("clear")  #! Won't work on the old Windows CMD
                     add_task()
                 except ValueError:  # ? Does this except actually catch anything?
                     print("Porfavor, escribe una tarea y su estado, no numeros")
@@ -115,11 +132,12 @@ while execute:
                             display_tasks()
                             change_task()
                         case 2:
+                            remove_task()
                             break
                         case 3:
                             # TODO: Implement this code to remove by index, not by name.
                             task: str = input("Introduce la tarea a eliminar")
-                            remove_task(task)
+                            # remove_task(task)
                 except ValueError:
                     print(
                         f"{RED_COLOR} Debes introducir 1, 2 o 3 como acción!{RESET_COLOR}"
