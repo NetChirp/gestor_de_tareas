@@ -62,59 +62,19 @@ def add_task():
         os.system("clear")
 
 
-def remove_task(name: str):
-    removed = False
+def remove_task(task):
+    pass
 
-    # Utilizamos enumerate para obtener el índice y la tarea
-    for index, (task_name, _) in enumerate(tasks):
-        if task_name.lower() == name.lower():
-            # Tarea encontrada, se elimina por índice
-            del tasks[index]
-            removed = True
-            print(f"\n{BLUE_COLOR}Tarea '{name}' eliminada con éxito.{RESET_COLOR}\n")
-            break
 
-    if not removed:
-        print(
-            f"\n{RED_COLOR}Error: No se encontró la tarea '{name}' para eliminar.{RESET_COLOR}\n"
+def change_task():
+    task = int(
+        input(
+            f"{YELLOW_COLOR}[+] En la parte superior tienes el numero de cada tarea{RESET_COLOR}\nIntroduce numero de tarea a cambiar: "
         )
+    )
 
-    return tasks
-
-
-def change_task_name(index_to_change: int, new_name: str):
-    # Ajustar el índice de 1-basado a 0-basado
-    list_index = index_to_change - 1
-
-    # Validación básica del índice
-    if 0 <= list_index < len(tasks):
-        old_name = tasks[list_index][0]
-
-        # Comprobar si el nuevo nombre ya existe (opcional, pero buena práctica para evitar duplicados)
-        # Se puede usar una versión modificada de search_task o simplemente iterar
-        name_exists = any(
-            task[0].lower() == new_name.lower()
-            for i, task in enumerate(tasks)
-            if i != list_index
-        )
-
-        if name_exists:
-            print(
-                f"\n{YELLOW_COLOR}El nombre de tarea '{new_name}' ya existe. Por favor, elige otro.{RESET_COLOR}\n"
-            )
-            return tasks
-
-        # Actualizar el nombre (índice 0 dentro de la lista de la tarea)
-        tasks[list_index][0] = new_name
-        print(
-            f"\n{BLUE_COLOR}El nombre de la tarea '{old_name}' ha cambiado a '{new_name}'.{RESET_COLOR}\n"
-        )
-    else:
-        print(
-            f"\n{RED_COLOR}Error: Índice de tarea no válido ({index_to_change}).{RESET_COLOR}\n"
-        )
-
-    return tasks
+    remove_task(task)
+    add_task()
 
 
 while execute:
@@ -141,28 +101,28 @@ while execute:
             case 3:
                 os.system("clear")
                 display_tasks()
-                index_of_task: int = int(
-                    input(
-                        f"{YELLOW_COLOR}Introduced el indice de la tarea a gestionar: {RESET_COLOR}"
-                    )
-                )
-
                 print(f"{BLUE_COLOR}--- ACCIONES ---{RESET_COLOR}")
-                print(f"{BLUE_COLOR}[1]{RESET_COLOR} Cambiar nombre")
-                print(f"{BLUE_COLOR}[2]{RESET_COLOR} Cambiar estado")
-                print(f"{BLUE_COLOR} --- FIN --- {RESET_COLOR}")
+                print(
+                    f"{BLUE_COLOR}[1]{RESET_COLOR} Cambiar nombre y estado de una tarea"
+                )
+                print(f"{BLUE_COLOR}[2]{RESET_COLOR} Eliminar tarea")
+
+                print(f"{BLUE_COLOR}[3]{RESET_COLOR} Volver hacia atras")
                 try:
                     to_do = int(input("Opcion a realizar (numero): "))
                     match to_do:
                         case 1:
-                            new_task_name: str = input("Introduce el nuevo nombre")
-
-                            pass
+                            display_tasks()
+                            change_task()
                         case 2:
-                            pass
+                            break
+                        case 3:
+                            # TODO: Implement this code to remove by index, not by name.
+                            task: str = input("Introduce la tarea a eliminar")
+                            remove_task(task)
                 except ValueError:
                     print(
-                        f"{RED_COLOR} Debes introducir 1 u 2 como acción!{RESET_COLOR}"
+                        f"{RED_COLOR} Debes introducir 1, 2 o 3 como acción!{RESET_COLOR}"
                     )
             case 4:
                 execute = False
