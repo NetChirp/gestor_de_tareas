@@ -21,6 +21,19 @@ BLUE_COLOR = "\033[1;34m"
 YELLOW_COLOR = "\033[33m"
 
 
+def display_tasks():
+    if not tasks:
+        print(f"{YELLOW_COLOR}No hay tareas en la lista.{RESET_COLOR}")
+        return False
+
+    print("--- TAREAS ACTUALES ---")
+    # Usa enumerate para mostrar un índice visible al usuario
+    for i, (task, status) in enumerate(tasks, 1):
+        print(f"{BLUE_COLOR}[{i}]{RESET_COLOR} {task} - Estado: {status}")
+    print("--------------------------\n")
+    return True
+
+
 def search_task(name: str) -> bool:
     """
     Busca si una tarea con el nombre introducido ya existe en la lista tasks'.
@@ -50,11 +63,44 @@ def add_task():
 
 
 def remove_task(name: str):
-    pass
+    removed = False
+
+    # Utilizamos enumerate para obtener el índice y la tarea
+    for index, (task_name, _) in enumerate(tasks):
+        if task_name.lower() == name.lower():
+            # Tarea encontrada, se elimina por índice
+            del tasks[index]
+            removed = True
+            print(f"\n{BLUE_COLOR}Tarea '{name}' eliminada con éxito.{RESET_COLOR}\n")
+            break
+
+    if not removed:
+        print(
+            f"\n{RED_COLOR}Error: No se encontró la tarea '{name}' para eliminar.{RESET_COLOR}\n"
+        )
+
+    return tasks
 
 
 def change_task_status(name: str, new_status: str):
-    pass
+    changed = False
+
+    for index, (task_name, current_status) in enumerate(tasks):
+        if task_name.lower() == name.lower():
+            # Tarea encontrada, se actualiza el estado (índice 1 dentro de la lista de la tarea)
+            tasks[index][1] = new_status
+            changed = True
+            print(
+                f"\n{BLUE_COLOR}El estado de la tarea '{name}' ha cambiado a '{new_status}'.{RESET_COLOR}\n"
+            )
+            break  # Salir del bucle una vez actualizado
+
+    if not changed:
+        print(
+            f"\n{RED_COLOR}Error: No se encontró la tarea '{name}' para cambiar su estado.{RESET_COLOR}\n"
+        )
+
+    return tasks  # Devuelve la lista modificada
 
 
 while execute:
