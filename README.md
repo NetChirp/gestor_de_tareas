@@ -10,7 +10,6 @@ El objetivo de este programa es permitir a los usuarios gestionar una lista de t
 
 - **Agregar Tarea**: Esta opción permitirá al usuario ingresar una nueva tarea y la agrega a la lista de tareas pendientes.
 - **Listar Tareas**: Muestra una lista numerada de todas las tareas pendientes, indicando si están completadas o no.
-- **Marcar Tarea como Completada**: Permite al usuario seleccionar una tarea de la lista y marcarla como completada.
 - **Eliminar Tarea**: Permite al usuario seleccionar una tarea de la lista y eliminarla de la lista de tareas.
 - **Salir**: Termina el programa.
 
