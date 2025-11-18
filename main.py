@@ -1,4 +1,13 @@
 # Programa monolitico para la gestión de tareas
+"""
+? Declaracion importante
+Declaración de uso de IA: El unico uso de la IA en este programa ha sido el saber los
+full escapecodes para los colores y que me explique errores, no implementaciones o que me añade cosas
+
+Se mezcla el inglés y el español debido a que empece esto en inglés y luego no quise hacer un Control F y reemplazar todo
+una vez que funcionaba. Y como esto es para mi github tambien, el cual es en inglés, decidi simplemente mezclarlo
+"""
+
 
 import os
 
