@@ -1,8 +1,4 @@
-Aquí tienes la traducción a **inglés americano**:
-
----
-
-## 📝 Pending Task Manager (To-Do List) in Python
+## 📝 Task Manager (To-Do List) in Python
 
 This repository contains a simple Python script designed to manage a to-do list through a console interface.
 
