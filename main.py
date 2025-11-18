@@ -31,7 +31,7 @@ YELLOW_COLOR = "\033[33m"
 def display_tasks():
     if not tasks:
         print(f"{YELLOW_COLOR}No hay tareas en la lista.{RESET_COLOR}")
-        return False
+        return False # This return value is not handled. TODO: Delete it if the program does not crash without it 
 
     print(f"{BLUE_COLOR}--- TAREAS ACTUALES ---{RESET_COLOR}")
     # Usa enumerate para mostrar un índice visible al usuario
