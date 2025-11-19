@@ -8,15 +8,14 @@ Se mezcla el inglés y el español debido a que empece esto en inglés y luego n
 una vez que funcionaba. Y como esto es para mi github tambien, el cual es en inglés, decidi simplemente mezclarlo
 """
 
-
 import os
 
 # Variables globales
 execute: bool = True
 tasks = []
 
-""" 
-* Estructura esperada de tasks: 
+"""
+* Estructura esperada de tasks:
 
         Indice 1            Indice 2
 * [['Tarea', 'estado'], ['Tarea', 'estado']]
@@ -184,4 +183,3 @@ while execute:
         print(
             f"{RED_COLOR}El valor introducido no es valido. Introduce un numero del menu de opciones{RESET_COLOR}\n"
         )
-print(tasks)
